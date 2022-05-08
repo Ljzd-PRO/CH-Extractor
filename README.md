@@ -58,4 +58,4 @@ chextract
 
 ## 额外说明
 * 有的解压工具是支持非 UTF-8 中文密码解压的，不需要使用该脚本，使用了反而会解压失败。  
-例如Linux的 unrar ，或 macOS 下的App [Keka](https://www.keka.io/en/)
+例如 Linux 的 unrar ，或 macOS 下的App [Keka](https://www.keka.io/en/)
