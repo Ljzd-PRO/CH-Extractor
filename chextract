@@ -1,0 +1,68 @@
+#!/bin/bash
+
+set -u
+
+usage() {
+    printf "\33[1mCH Extractor - 解压中文密码的压缩包\33[0m\n"
+    cat 1>&2 <<EOF
+使用方法:
+    chextract <密码> <压缩文件目录> [选项]
+
+选项:
+    -c "<命令>":  自定义解压命令 格式如下:
+        %1   代指密码
+        %2   代指压缩文件目录
+        例如:
+            -c "7z x -p%1 %2" (默认)
+            -c "unzip -P %1 %2"
+
+    -e <编码>:  密码的编码格式
+        例如:
+            -e gbk (为默认值 适用于Windows下的中文密码)
+EOF
+}
+
+# 若参数少于等于1 输出帮助信息
+if [ $# -le 1 ]; then
+    usage
+    exit 0
+fi
+
+# 将参数写入数组
+num=0
+for arg in "$@"; do
+        args[num]=$arg
+        let num++
+    done
+
+# 初始化可选参数
+command="7z x -p%1 %2"
+encoding="gbk"
+
+# 配置可选参数
+num=0
+for arg in ${args[@]}; do
+        let num++
+        case $arg in
+            -c)
+                if [ $# != $num ] && [ ${args[num]:0:1} != "-" ]; then
+                    command=${args[num]}
+                fi
+                ;;
+            -e)
+                if [ $# != $num ] && [ ${args[num]:0:1} != "-" ]; then
+                    encoding=${args[num]}
+                fi
+                ;;
+        esac
+    done
+
+# 密码转码
+pwd=$(echo -n $1|iconv -f utf-8 -t $encoding)
+
+# 命令字符串替换
+pwd_step=${command/"%1"/$pwd}
+path_step=${pwd_step/"%2"/$2}
+
+# 执行解压命令
+sh -c "$path_step"
