@@ -9,11 +9,11 @@
 
 ## 使用
 * 下载脚本到 `/usr/local/bin` 以便在任何位置执行。你可以选用下面两个命令之一来下载
-```
+```shell
 curl https://raw.githubusercontent.com/Ljzd-PRO/CH-Extractor/main/chextract -o chextract && mv chextract /usr/local/bin/
 ```
 
-```
+```shell
 wget https://raw.githubusercontent.com/Ljzd-PRO/CH-Extractor/main/chextract && mv chextract /usr/local/bin/
 ```
 
@@ -37,22 +37,22 @@ wget https://raw.githubusercontent.com/Ljzd-PRO/CH-Extractor/main/chextract && m
 
 ## 使用样例
 * 按照默认配置解压密码为 `新年快乐` 的 `./documents.7z` 压缩包
-```
+```shell
 chextract 新年快乐 ./documents.7z
 ```
 
 * 使用 7zz 解压密码为 `新年快乐` 的 `./documents.rar` 压缩包 (macOS上名字叫7zz)
-```
+```shell
 chextract 新年快乐 ./documents.7z -c "7zz x -p%1 %2"
 ```
 
 * 解压密码为 `新年快乐` 的 `./documents.rar` 压缩包，其密码是 Unicode 编码下的中文
-```
+```shell
 chextract 新年快乐 ./documents.7z -e unicode
 ```
 
 * 获取使用帮助
-```
+```shell
 chextract
 ```
 
