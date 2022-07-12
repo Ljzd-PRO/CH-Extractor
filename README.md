@@ -43,12 +43,12 @@ chextract 新年快乐 ./documents.7z
 
 * 使用 7zz 解压密码为 `新年快乐` 的 `./documents.rar` 压缩包 (macOS上名字叫7zz)
 ```shell
-chextract 新年快乐 ./documents.7z -c "7zz x -p%1 %2"
+chextract 新年快乐 ./documents.rar -c "7zz x -p%1 %2"
 ```
 
 * 解压密码为 `新年快乐` 的 `./documents.rar` 压缩包，其密码是 Unicode 编码下的中文
 ```shell
-chextract 新年快乐 ./documents.7z -e unicode
+chextract 新年快乐 ./documents.rar -e unicode
 ```
 
 * 获取使用帮助
